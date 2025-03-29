@@ -4,12 +4,14 @@
  */
 var maxProfit = function (prices) {
   let max = 0;
+  let buyValue = Infinity;
   for (let i = 0; i < prices.length; i += 1) {
-    for (let j = i + 1; j < prices.length; j += 1) {
-      const currentProfit = prices[j] - prices[i];
-      if (currentProfit > max) {
-        max = currentProfit;
-      }
+    const currentSellValue = prices[i];
+    if (currentSellValue - buyValue > max) {
+      max = currentSellValue - buyValue;
+    }
+    if (buyValue > prices[i]) {
+      buyValue = prices[i];
     }
   }
   return max;
